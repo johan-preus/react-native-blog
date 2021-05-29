@@ -6,6 +6,9 @@ import { createAppContainer } from "react-navigation"
 import { Icon } from "react-native-elements"
 import SafeAreaView from "react-native-safe-area-view"
 import Home from "./HomeComponent"
+import About from "./AboutComponent"
+import Blog from "./BlogComponent"
+import Contact from "./ContactComponent"
 
 const HomeNavigator = createStackNavigator(
     {
@@ -14,7 +17,7 @@ const HomeNavigator = createStackNavigator(
     {
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
-                backgroundColor: "#5637DD",
+                backgroundColor: "#034f84",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -23,6 +26,81 @@ const HomeNavigator = createStackNavigator(
             headerLeft: (
                 <Icon
                     name="home"
+                    type="font-awesome"
+                    iconStyle={styles.stackIcon}
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            ),
+        }),
+    }
+)
+
+const AboutNavigator = createStackNavigator(
+    {
+        About: { screen: About },
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: "#034f84",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+            headerLeft: (
+                <Icon
+                    name="info-circle"
+                    type="font-awesome"
+                    iconStyle={styles.stackIcon}
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            ),
+        }),
+    }
+)
+
+const BlogNavigator = createStackNavigator(
+    {
+        Blog: { screen: Blog },
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: "#034f84",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+            headerLeft: (
+                <Icon
+                    name="comment-alt" //other possibilities: blog, bookmark, books, comment-alt
+                    type="font-awesome"
+                    iconStyle={styles.stackIcon}
+                    onPress={() => navigation.toggleDrawer()}
+                />
+            ),
+        }),
+    }
+)
+
+const ContactNavigator = createStackNavigator(
+    {
+        Contact: { screen: Contact },
+    },
+    {
+        defaultNavigationOptions: ({ navigation }) => ({
+            headerStyle: {
+                backgroundColor: "#034f84",
+            },
+            headerTintColor: "#fff",
+            headerTitleStyle: {
+                color: "#fff",
+            },
+            headerLeft: (
+                <Icon
+                    name="address-card"
                     type="font-awesome"
                     iconStyle={styles.stackIcon}
                     onPress={() => navigation.toggleDrawer()}
@@ -63,9 +141,48 @@ const MainNavigator = createDrawerNavigator(
                 ),
             },
         },
+        Blog: {
+            screen: BlogNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon
+                        name="blog"
+                        type="font-awesome"
+                        size={24}
+                        color={tintColor}
+                    />
+                ),
+            },
+        },
+        About: {
+            screen: AboutNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon
+                        name="info-circle"
+                        type="font-awesome"
+                        size={24}
+                        color={tintColor}
+                    />
+                ),
+            },
+        },
+        Contact: {
+            screen: ContactNavigator,
+            navigationOptions: {
+                drawerIcon: ({ tintColor }) => (
+                    <Icon
+                        name="address-card"
+                        type="font-awesome"
+                        size={24}
+                        color={tintColor}
+                    />
+                ),
+            },
+        },
     },
     {
-        drawerBackgroundColor: "#CEC8FF",
+        drawerBackgroundColor: "#92a8d1",
         contentComponent: CustomDrawerContentComponent,
     }
 )
@@ -85,7 +202,6 @@ export default class Main extends Component {
                 }}
             >
                 <AppNavigator />
-                <Text>asdf;aklsnrkl;awnerkl;awnfl;jaweofawjkfawjefanwe;n;jfawne;fjaw</Text>
             </View>
         )
     }
@@ -96,7 +212,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     drawerHeader: {
-        backgroundColor: "#5637DD",
+        backgroundColor: "#034f84",
         height: 140,
         alignItems: "center",
         justifyContent: "center",
