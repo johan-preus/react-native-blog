@@ -9,6 +9,7 @@ import Home from "./HomeComponent"
 import About from "./AboutComponent"
 import Blog from "./BlogComponent"
 import Contact from "./ContactComponent"
+import BlogPage from "./BlogPageComponent"
 
 const HomeNavigator = createStackNavigator(
     {
@@ -63,8 +64,10 @@ const AboutNavigator = createStackNavigator(
 const BlogNavigator = createStackNavigator(
     {
         Blog: { screen: Blog },
+        BlogPage: { screen: BlogPage },
     },
     {
+        initialRouteName: 'Blog',
         defaultNavigationOptions: ({ navigation }) => ({
             headerStyle: {
                 backgroundColor: "#034f84",
@@ -75,7 +78,7 @@ const BlogNavigator = createStackNavigator(
             },
             headerLeft: (
                 <Icon
-                    name="comment-alt" //other possibilities: blog, bookmark, books, comment-alt
+                    name="comment" //other possibilities: blog, bookmark, books, comment-alt
                     type="font-awesome"
                     iconStyle={styles.stackIcon}
                     onPress={() => navigation.toggleDrawer()}
@@ -146,7 +149,7 @@ const MainNavigator = createDrawerNavigator(
             navigationOptions: {
                 drawerIcon: ({ tintColor }) => (
                     <Icon
-                        name="blog"
+                        name="comment"
                         type="font-awesome"
                         size={24}
                         color={tintColor}
@@ -223,6 +226,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontSize: 24,
         fontWeight: "bold",
+        paddingLeft: 20,
     },
     drawerImage: {
         margin: 10,
